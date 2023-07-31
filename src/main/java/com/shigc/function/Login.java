@@ -72,6 +72,8 @@ public class Login {
                 System.out.println("请输入验证码，如果需要重新获取验证码，请输入 1 并回车：");
                 code = sc.next();
 
+                System.out.println("正在登陆, 请等待1-3秒...");
+
                 if (code.equals("1")) {
                     continue;
                 }
@@ -91,6 +93,8 @@ public class Login {
                     System.out.println("登陆失败，请重新登陆");
                     continue;
                 }
+                System.out.println("登陆成功");
+                Thread.sleep(1000);
                 //获取到cookie值
                 Page.cookie = CookieTools.getCookie(webClient.getCookieManager().getCookie("JSESSIONID").toString());
                 return;

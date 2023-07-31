@@ -1,7 +1,6 @@
 package com.shigc.function;
 
-
-import com.shigc.pojo.Student;
+import com.shigc.utils.PrintMeau;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -16,33 +15,32 @@ public class Manager {
         System.out.println("请先登陆教务系统");
         Login login = new Login();
         login.loginSCU();
-        System.out.println("登陆成功");
         int choice = 0;
         Scanner sc = new Scanner(System.in);
         while(choice != 5) {
-            // 清空控制台
-            System.out.print("\033[H\033[2J");
-            System.out.println("请选择你要进行的操作：");
-            System.out.println("1.成绩查询计算");
-            System.out.println("2.课表查询(开发中)");
-            System.out.println("3.自动一键评教(开发中)");
-            System.out.println("4.自动抢课(开发中)");
-            System.out.println("5.退出(开发中)");
-            System.out.println("请输入你的选择：");
-            choice = sc.nextInt();
+            //打印菜单
+            PrintMeau.printMeau();
+            try {
+                choice = sc.nextInt();
+            } catch (Exception e) {
+                System.out.println("输入错误，请重新输入");
+                continue;
+            }
             switch (choice) {
-                case 1:
-                    GetScores getScores = GetScores.getScores();
-                    System.out.println("正在查询本学期成绩...");
-                    Student.showThisTermScores();
-                    System.out.println("正在查询所有学期成绩...");
-                    Student.showAllScores();
+                case 1 -> AllCase.case1ShowScore();
+                case 2 -> AllCase.case2ShowCourse();
+                case 3 -> {
+                    System.out.println("自动一键评教功能开发中...");
                     System.out.println("按任意键返回...");
                     System.in.read();
-                    break;
-                default:
-                    System.out.println("输入错误，请重新输入");
-                    break;
+                }
+                case 4 -> {
+                    System.out.println("自动抢课功能开发中...");
+                    System.out.println("按任意键返回...");
+                    System.in.read();
+                }
+                case 5 -> System.out.println("正在退出...");
+                default -> System.out.println("输入错误，请重新输入");
             }
         }
     }

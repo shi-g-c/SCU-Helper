@@ -1,10 +1,9 @@
 package com.shigc.pojo;
 
-import com.shigc.function.GetScores;
+import com.shigc.course.Course;
 import com.shigc.scores.CalculateGpaAndAvg;
 import com.shigc.scores.ScoresCourse;
 
-import java.io.IOException;
 import java.util.List;
 
 public class Student {
@@ -50,6 +49,8 @@ public class Student {
     public static double allRequiredCreditSum;
 
 
+    // 本学期课表
+    public static List<Course> thisTermCourses;
 
 
     // Cookie
@@ -87,5 +88,9 @@ public class Student {
         System.out.println("全部课程平均分：" + String.format("%.2f", allAvg));
         System.out.println("全部已修学分：" + String.format("%.2f", allCreditSum));
         System.out.println("全部必修学分：" + String.format("%.2f", allRequiredCreditSum));
+    }
+
+    public static void showThisTermCourses() {
+        Course.printThisTermCourses(thisTermCourses);
     }
 }

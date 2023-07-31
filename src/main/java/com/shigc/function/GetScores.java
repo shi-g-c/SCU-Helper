@@ -19,15 +19,19 @@ public class GetScores {
     GetScores() throws IOException {
         //设置webClient的相关参数
         webClient = ClientTool.getWebClient();
+        System.out.println("正在查询本学期成绩...");
         getThisTermScores();
+        System.out.println("本学期成绩查询完毕!");
+        System.out.println("正在查询所有学期成绩...");
         getAllTermScores();
+        System.out.println("所有学期成绩查询完毕!");
+
     }
 
-    public static GetScores getScores() throws IOException {
+    public static void getScores() throws IOException {
         if(getScores == null) {
             getScores = new GetScores();
         }
-        return getScores;
     }
     /**
      * 获取本学期分数

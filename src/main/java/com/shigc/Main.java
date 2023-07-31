@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        //关闭日志
         System.getProperties().put("org.apache.commons.logging.simplelog.defaultlog","fatal");
         Logger.getLogger("com.gargoylesoftware.htmlunit").setLevel(Level.OFF);
         Logger.getLogger("org.apache.http").setLevel(Level.OFF);
