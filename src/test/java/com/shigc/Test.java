@@ -3,19 +3,16 @@ package com.shigc;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
-import com.shigc.pojo.Student;
 import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
+import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.Scanner;
 
 public class Test {
     static {
@@ -25,16 +22,14 @@ public class Test {
     }
     @org.junit.Test
     public void main() throws IOException {
-        // 向 http://zhjw.scu.edu.cn/student/courseSelect/thisSemesterCurriculum/callback 发送get请求，获取本学期课表
-        URL url = new URL("http://zhjw.scu.edu.cn/student/courseSelect/thisSemesterCurriculum/callback");
-        URLConnection conn = url.openConnection();
+        URL url = new URL("http://zhjw.scu.edu.cn/student/teachingAssessment/evaluation/queryAll?pageNum=1&pageSize=30&flag=js");
+        HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+        //设置url的请求方式为POST
+        conn.setRequestMethod("POST");
         //设置Cookie
-        String cookie = "JSESSIONID=" + "aaal01lyxXXYu8OpHUqKy" + "; selectionBar=1293219";
+        String cookie = "JSESSIONID=aaal01lyxXXYu8OpHUqKy; selectionBar=125803539";
         conn.setRequestProperty("Cookie", cookie);
-        //设置请求方式
-        conn.setRequestProperty("method", "GET");
-        conn.setRequestProperty("Referer", "http://zhjw.scu.edu.cn/student/courseSelect/courseSelectResult/index");
-        conn.setRequestProperty("Host", "zhjw.scu.edu.cn");
+        conn.setRequestProperty("Referer", "http://zhjw.scu.edu.cn/student/teachingEvaluation/newEvaluation/index");
         //获取Response响应体里的内容
         conn.connect();
         //从conn中获取响应的内容
