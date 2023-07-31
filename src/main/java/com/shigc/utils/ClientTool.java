@@ -5,6 +5,8 @@ import com.gargoylesoftware.htmlunit.NicelyResynchronizingAjaxController;
 import com.gargoylesoftware.htmlunit.SilentCssErrorHandler;
 import com.gargoylesoftware.htmlunit.WebClient;
 
+import java.net.URLConnection;
+
 /**
  *  Client工具类
  */
@@ -41,5 +43,6 @@ public class ClientTool {
         }
         return webClient;
     }
+
 }
 

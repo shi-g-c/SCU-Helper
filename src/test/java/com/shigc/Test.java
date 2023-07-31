@@ -3,8 +3,17 @@ package com.shigc;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
+import com.shigc.pojo.Student;
 import org.slf4j.LoggerFactory;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,14 +24,33 @@ public class Test {
         loggerList.forEach(logger -> logger.setLevel(Level.OFF));
     }
     @org.junit.Test
-    public void main() {
-        for (int i = 0; i < 10; i++) {
-            System.out.println("Hello World!");
+    public void main() throws IOException {
+        // 向 http://zhjw.scu.edu.cn/student/courseSelect/thisSemesterCurriculum/callback 发送get请求，获取本学期课表
+        URL url = new URL("http://zhjw.scu.edu.cn/student/courseSelect/thisSemesterCurriculum/callback");
+        URLConnection conn = url.openConnection();
+        //设置Cookie
+        String cookie = "JSESSIONID=" + "aaal01lyxXXYu8OpHUqKy" + "; selectionBar=1293219";
+        conn.setRequestProperty("Cookie", cookie);
+        //设置请求方式
+        conn.setRequestProperty("method", "GET");
+        conn.setRequestProperty("Referer", "http://zhjw.scu.edu.cn/student/courseSelect/courseSelectResult/index");
+        conn.setRequestProperty("Host", "zhjw.scu.edu.cn");
+        //获取Response响应体里的内容
+        conn.connect();
+        //从conn中获取响应的内容
+        InputStream is = conn.getInputStream();
+        // 封装输入流is，并指定字符集
+        BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
+        // 存放数据
+        StringBuffer sbf = new StringBuffer();
+        String temp = null;
+        while ((temp = br.readLine()) != null) {
+            sbf.append(temp);
         }
-        Scanner sc = new Scanner(System.in);
-        sc.next();
-        System.out.print("\033[H\033[2J");
+        System.out.println(sbf);
     }
+
+
 
     public static void clearnCmd() {
         try {//使用命令的过程可能会出现失败，需要捕获异常

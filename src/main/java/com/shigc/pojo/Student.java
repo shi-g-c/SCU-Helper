@@ -52,6 +52,9 @@ public class Student {
     // 本学期课表
     public static List<Course> thisTermCourses;
 
+    // 已选课程列表
+    public static List<Course> selectedCourses;
+
 
     // Cookie
     public static String cookie;
@@ -92,5 +95,9 @@ public class Student {
 
     public static void showThisTermCourses() {
         Course.printThisTermCourses(thisTermCourses);
+    }
+
+    public static void showSelectedCourses() {
+        Course.printThisTermCourses(selectedCourses);
     }
 }

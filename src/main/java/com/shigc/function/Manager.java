@@ -19,7 +19,7 @@ public class Manager {
         Scanner sc = new Scanner(System.in);
         while(choice != 5) {
             //打印菜单
-            PrintMeau.printMeau();
+            PrintMeau.printMainMeau();
             try {
                 choice = sc.nextInt();
             } catch (Exception e) {
@@ -34,11 +34,7 @@ public class Manager {
                     System.out.println("按任意键返回...");
                     System.in.read();
                 }
-                case 4 -> {
-                    System.out.println("自动抢课功能开发中...");
-                    System.out.println("按任意键返回...");
-                    System.in.read();
-                }
+                case 4 -> AllCase.case4ChooseCourse();
                 case 5 -> System.out.println("正在退出...");
                 default -> System.out.println("输入错误，请重新输入");
             }

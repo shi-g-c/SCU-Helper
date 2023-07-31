@@ -35,7 +35,7 @@ public class GetThisTermCourse {
 
     public void getThisTermCourse() throws IOException {
         //获取所有课程的页面
-        HtmlPage allCoures = webClient.getPage("http://zhjw.scu.edu.cn/student/courseSelect/thisSemesterCurriculum/index");
+        HtmlPage allCoures = webClient.getPage(Const.THIS_TERM_COURSES_URL);
 
         //等待异步JS执行结束
         webClient.waitForBackgroundJavaScript(1000);
@@ -43,7 +43,7 @@ public class GetThisTermCourse {
         //System.out.println(allCoures.asXml());
 
         //获取课程表格
-        HtmlTable courseTable = (HtmlTable) allCoures.getByXPath("/html/body/div[4]/div[2]/div[2]/div/div/div/div[3]/div[1]/div/table").get(0);
+        HtmlTable courseTable = (HtmlTable) allCoures.getByXPath(Const.THIS_TERM_COURSES_TABLE_XPATH).get(0);
 
         //获取所有的tr
         List<HtmlTableRow> trs = courseTable.getRows();

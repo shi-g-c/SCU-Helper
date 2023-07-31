@@ -76,4 +76,28 @@ public class Course {
         }
         new PrintTable(table).printTable();
     }
+
+    public static List<Course> getSelectedCoursesByTable(List<HtmlTableRow> trs) {
+        List<Course> courses = new ArrayList<>();
+        // 从第一行开始遍历
+        for (int i = 1; i < trs.size(); i++) {
+            //忽略掉有多个时间段的课程trs
+            if(trs.get(i).getCells().size() < 5) {
+                continue;
+            }
+            List<String> courseInfo = new ArrayList<>();
+            for (int j = 0; j < trs.get(i).getCells().size(); j++) {
+                courseInfo.add(trs.get(i).getCell(j).getTextContent());
+            }
+            Course course = new Course();
+            course.setCourseName(courseInfo.get(1));
+            course.setCourseTeacher(courseInfo.get(9));
+            course.setCourseCredit(courseInfo.get(5));
+            course.setCourseType(courseInfo.get(6));
+            course.setCourseClassroom(courseInfo.get(13));
+            course.setCourseTime(courseInfo.get(14));
+            courses.add(course);
+        }
+        return courses;
+    }
 }

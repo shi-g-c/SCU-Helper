@@ -28,4 +28,10 @@ public class Const {
 
     //所有学期任选成绩表格的xpath
     public static String ALL_TERM_OPTIONAL_SCORES_TABLE_XPATH = "/html/body/div[4]/div[2]/div[2]/div/div/div[2]/div/div/div/div/div/div/div[3]/div/div/table";
+
+    //本学期课表url
+    public static String THIS_TERM_COURSES_URL = "http://zhjw.scu.edu.cn/student/courseSelect/thisSemesterCurriculum/index";
+
+    //本学期课表表格xpath
+    public static String THIS_TERM_COURSES_TABLE_XPATH = "/html/body/div[4]/div[2]/div[2]/div/div/div/div[3]/div[1]/div/table";
 }
