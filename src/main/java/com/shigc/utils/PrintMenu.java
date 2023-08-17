@@ -3,8 +3,8 @@ package com.shigc.utils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrintMeau {
-    public static void printMainMeau() {
+public class PrintMenu {
+    public static void printMainMenu() {
         // 清空控制台
         System.out.print("\033[H\033[2J");
         System.out.println("请选择你要进行的操作：");
@@ -28,13 +28,17 @@ public class PrintMeau {
         choiceTable.add(choice4);
         List<String> choice5 = new ArrayList<>();
         choice5.add("5");
-        choice5.add("退出");
+        choice5.add("联系开发者");
         choiceTable.add(choice5);
+        List<String> choice6 = new ArrayList<>();
+        choice6.add("6");
+        choice6.add("退出");
+        choiceTable.add(choice6);
         new PrintTable(choiceTable).printTable();
         System.out.println("请输入你的选择：");
     }
 
-    public static void printChooseCourseMeau() {
+    public static void printChooseCourseMenu() {
         // 清空控制台
         System.out.print("\033[H\033[2J");
         System.out.println("请选择你要进行的操作：");

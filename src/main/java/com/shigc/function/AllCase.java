@@ -1,9 +1,12 @@
 package com.shigc.function;
 
 import com.shigc.pojo.Student;
-import com.shigc.utils.PrintMeau;
+import com.shigc.utils.PrintMenu;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Scanner;
 
 public class AllCase {
@@ -38,7 +41,7 @@ public class AllCase {
      * 选课
      */
     public static void case4ChooseCourse() throws IOException {
-        PrintMeau.printChooseCourseMeau();
+        PrintMenu.printChooseCourseMenu();
         Scanner sc = new Scanner(System.in);
         int choice = 0;
         while(choice != 4) {
@@ -65,7 +68,24 @@ public class AllCase {
                 case 4 -> System.out.println("正在返回上页...");
                 default -> System.out.println("输入错误，请重新输入");
             }
-            PrintMeau.printChooseCourseMeau();
+            PrintMenu.printChooseCourseMenu();
+        }
+    }
+
+    /**
+     * 联系开发者
+     */
+    public static void case5ContactDeveloper() {
+        //https://github.com/shi-g-c/SCU-Helper
+        System.out.println("正在打开浏览器...");
+        // 使用默认浏览器打开网页
+        Desktop desktop = Desktop.getDesktop();
+        if (Desktop.isDesktopSupported()) {
+            try {
+                desktop.browse(new URI("https://github.com/shi-g-c/SCU-Helper"));
+            } catch (IOException | URISyntaxException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

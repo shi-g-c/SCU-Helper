@@ -28,6 +28,7 @@
       <element id="extracted-dir" path="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3/maven_repository/net/sourceforge/htmlunit/htmlunit-cssparser/1.14.0/htmlunit-cssparser-1.14.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3/maven_repository/org/apache/httpcomponents/httpclient/4.5.14/httpclient-4.5.14.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3/maven_repository/org/eclipse/jetty/jetty-io/9.4.50.v20221201/jetty-io-9.4.50.v20221201.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3/maven_repository/com/alibaba/fastjson/1.2.76/fastjson-1.2.76.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

@@ -25,7 +25,6 @@ public class GetScores {
         System.out.println("正在查询所有学期成绩...");
         getAllTermScores();
         System.out.println("所有学期成绩查询完毕!");
-
     }
 
     public static void getScores() throws IOException {
@@ -43,7 +42,7 @@ public class GetScores {
         HtmlPage allScores = webClient.getPage(Const.THIS_TERM_SCORES_URL);
 
         //等待异步JS执行结束
-        webClient.waitForBackgroundJavaScript(1000);
+        webClient.waitForBackgroundJavaScript(500);
 
         //System.out.println(allScores.asXml());
 

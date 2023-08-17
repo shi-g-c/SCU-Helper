@@ -31,14 +31,34 @@ public class Login {
         //当前状态没有登录
         Page.status = Page.Status.NOT_LOGIN;
 
+        Scanner sc = new Scanner(System.in);
+
+        //获取当前绝对路径
+        File directory = new File("");
+        String path = directory.getAbsolutePath();    //得到的是C:/test/abc
+        //检查是否有user.config文件
+        File file1 = new File(path + "/config.json");
+        if(file1.exists()){
+            System.out.println("正在读取账号信息...");
+            //如果有config.json文件，直接读取文件中的学号和密码
+            Student.studentId = CookieTools.readUserConfig("studentId");
+            Student.password = CookieTools.readUserConfig("password");
+        } else {
+            //输入学号和密码
+            System.out.println("请输入学号：");
+            Student.studentId = sc.next();
+            System.out.println("请输入密码：");
+            Student.password = sc.next();
+            System.out.println("是否保存账号密码？(y/n)");
+            String yn = sc.next();
+            if(yn.equals("y")){
+                //保存账号密码
+                CookieTools.setUserConfig(Student.studentId, Student.password);
+            }
+        }
+
         while(true){
             try {
-                //输入学号和密码
-                Scanner sc = new Scanner(System.in);
-                System.out.println("请输入学号：");
-                Student.studentId = sc.next();
-                System.out.println("请输入密码：");
-                Student.password = sc.next();
                 //获取登陆页面
                 Page.loginPage = webClient.getPage(Const.LOGIN_URL);
                 //获取登陆表单元素
@@ -72,11 +92,12 @@ public class Login {
                 System.out.println("请输入验证码，如果需要重新获取验证码，请输入 1 并回车：");
                 code = sc.next();
 
-                System.out.println("正在登陆, 请等待1-3秒...");
-
                 if (code.equals("1")) {
                     continue;
                 }
+
+                System.out.println("正在登陆, 请等待1-3秒...");
+
                 //定位验证码输入框
                 HtmlTextInput verify_code = form.getInputByName("j_captcha");
                 //填入用户输入的验证码

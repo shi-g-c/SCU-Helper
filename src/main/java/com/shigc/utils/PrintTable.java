@@ -16,9 +16,7 @@ import java.util.stream.Collectors;
 public class PrintTable {
 
     private Table table;
-    //最大列宽：sql查询结果某列内容可能过大，不想完全显示，因此限制最大列宽
     private Integer maxWidth;
-    //最大条数:sql查询结果可能有非常多，通常不必完全显示，因此限制最大条数
     private Integer maxLength;
 
     public PrintTable(List<List<String>> content, Integer maxWidth, Integer maxLength) {
@@ -26,7 +24,6 @@ public class PrintTable {
         this.maxLength = maxLength;
         this.maxWidth = maxWidth;
     }
-
 
     public PrintTable(List<List<String>> content) {
         this.table = buildTable(content);
@@ -65,6 +62,8 @@ public class PrintTable {
                 .forEach(row -> {
                     row.forEach(System.out::print);
                     System.out.println();
+                    //打印每行分割符号
+                    System.out.println(StringUtils.getRepeatChar("-", totalColSize));
                 });
         //打印末行分割符号
         System.out.println(StringUtils.getRepeatChar("-", totalColSize));
@@ -153,7 +152,7 @@ public class PrintTable {
         /**
          * 表格内容（含表头）
          */
-        private List<List<String>> content = new ArrayList<>();
+        private List<List<String>> content;
 
         /**
          * 表格列总字符长度：便于打印行分割符号
